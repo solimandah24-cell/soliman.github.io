@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>حقيبة الطالب | مكتب خدمات وقرطاسية وتصميم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@400;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:   #0F1B4C;
+    --navy-dark:   #091029;
+    --gold:        #F2B90A;
+    --sky:         #29ABE2;
+    --orange:      #F4871E;
+    --paper:       #F6F5F1;
+    --ink:         #16204A;
+    --ink-soft:    #5A6386;
+    --line:        rgba(255,255,255,.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Cairo', sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Lalezar', 'Cairo', sans-serif;
+    font-weight:400;
+    letter-spacing:.5px;
+  }
+  .mono{ font-family:'IBM Plex Sans Arabic', sans-serif; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  section{ position:relative; }
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- background circuitry ---------- */
+  .circuit-bg{
+    position:absolute; inset:0;
+    background-color:var(--navy-deep);
+    overflow:hidden;
+  }
+  .circuit-bg svg{ position:absolute; inset:0; width:100%; height:100%; opacity:.5; }
+  .circuit-bg .glow{
+    position:absolute; border-radius:50%;
+    filter:blur(60px); opacity:.35;
+  }
+
+  /* ---------- top logo banner ---------- */
+  .top-banner{
+    background:var(--navy-dark);
+    padding:22px 0 18px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  .top-banner img.logo-img{
+    width:100px; height:100px; object-fit:contain; border-radius:18px;
+    margin:0 auto 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  .top-banner span{
+    display:block; color:#fff; font-family:'Lalezar'; font-size:1.4rem; letter-spacing:.5px;
+  }
+  .top-banner small{
+    display:block; color:#9AA3C4; font-family:'IBM Plex Sans Arabic'; font-size:.82rem; margin-top:4px;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; right:0; left:0; z-index:100;
+    background:rgba(15,27,76,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    transition:padding .25s ease;
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px;
+    max-width:1180px; margin:0 auto;
+  }
+  .nav-brand{ display:flex; align-items:center; gap:12px; }
+  .nav-brand img.logo-img{ height:42px; width:42px; object-fit:contain; border-radius:8px; }
+  .nav-brand span{ color:#fff; font-family:'Lalezar'; font-size:1.25rem; }
+  .nav-links{ display:flex; gap:28px; }
+  .nav-links a{
+    color:#EAEEFA; font-size:.95rem; font-weight:600;
+    position:relative; padding:6px 2px;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; right:0; bottom:0; height:2px; width:0;
+    background:var(--gold); transition:width .3s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    background:var(--gold); color:var(--navy-dark)!important;
+    padding:9px 20px; border-radius:30px; font-weight:700; font-size:.9rem;
+  }
+  .burger{ display:none; color:#fff; font-size:1.6rem; background:none; border:none; cursor:pointer; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; align-items:center;
+    padding:70px 0 90px;
+  }
+  .hero-inner{
+    position:relative; z-index:2;
+    display:flex; flex-direction:column; align-items:center;
+    text-align:center; gap:22px;
+  }
+  .hero-logo{
+    width:140px; height:140px; object-fit:contain; border-radius:22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    animation:float 5s ease-in-out infinite;
+  }
+  @keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  .eyebrow{
+    color:var(--sky); font-family:'IBM Plex Sans Arabic'; font-weight:600;
+    letter-spacing:2px; font-size:.85rem; text-transform:uppercase;
+  }
+  .hero h1{
+    color:#fff; font-size:clamp(2.6rem, 6vw, 4.6rem); line-height:1.15;
+  }
+  .hero h1 span{ color:var(--gold); }
+  .hero p{
+    color:#C7CEE8; font-size:1.15rem; max-width:620px; line-height:1.9;
+  }
+  .laser-underline{ width:min(560px, 80vw); height:34px; }
+  .laser-underline path{
+    fill:none; stroke:var(--gold); stroke-width:3; stroke-linecap:round;
+    stroke-dasharray:900; stroke-dashoffset:900;
+    animation:draw 2.2s ease forwards .6s;
+    filter:drop-shadow(0 0 6px rgba(242,185,10,.8));
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .hero-ctas{ display:flex; gap:16px; margin-top:8px; flex-wrap:wrap; justify-content:center; }
+  .btn{
+    padding:14px 30px; border-radius:8px; font-weight:700; font-size:1rem;
+    display:inline-flex; align-items:center; gap:8px; transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-primary{ background:var(--gold); color:var(--navy-dark); box-shadow:0 8px 24px rgba(242,185,10,.28); }
+  .btn-outline{ border:1.5px solid rgba(255,255,255,.4); color:#fff; }
+  .btn:hover{ transform:translateY(-3px); }
+
+  .strip{
+    position:relative; z-index:2;
+    display:flex; justify-content:center; gap:36px; flex-wrap:wrap;
+    margin-top:56px; padding-top:34px; border-top:1px solid var(--line);
+    width:100%;
+  }
+  .strip-item{ text-align:center; color:#C7CEE8; font-family:'IBM Plex Sans Arabic'; font-size:.92rem; }
+  .strip-item b{ display:block; color:#fff; font-family:'Lalezar'; font-size:1.5rem; margin-bottom:4px; }
+
+  /* ---------- section headings ---------- */
+  .kicker{
+    color:var(--orange); font-family:'IBM Plex Sans Arabic'; font-weight:600;
+    letter-spacing:1.5px; font-size:.85rem; text-transform:uppercase;
+    display:flex; align-items:center; gap:10px; justify-content:center;
+  }
+  .kicker::before, .kicker::after{ content:''; width:26px; height:2px; background:var(--orange); }
+  .sec-title{ text-align:center; font-size:clamp(2rem,4vw,2.8rem); color:var(--ink); margin:10px 0 14px; }
+  .sec-sub{ text-align:center; color:var(--ink-soft); max-width:620px; margin:0 auto 50px; line-height:1.85; }
+
+  /* ---------- services ---------- */
+  .services{ padding:110px 0; background:var(--paper); }
+  .grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:22px;
+  }
+  .card{
+    position:relative;
+    background:#fff; border-radius:16px; padding:0 0 24px 0;
+    border:1px solid #E7E5DC;
+    overflow:hidden;
+    transition:transform .35s ease, box-shadow .35s ease;
+    display:flex; flex-direction:column;
+  }
+  .card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(15,27,76,.12); }
+  
+  .card-img-wrap{
+    width:100%; height:180px; overflow:hidden; position:relative; background:#f0f0f0;
+  }
+  .card-img-wrap img{
+    width:100%; height:100%; object-fit:cover; transition:transform .5s ease;
+  }
+  .card:hover .card-img-wrap img{ transform:scale(1.08); }
+  
+  .card-body{ padding:20px 20px 0 20px; flex-grow:1; }
+
+  .card svg.trace{
+    position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:2;
+  }
+  .card svg.trace rect{
+    fill:none; stroke:var(--accent, var(--gold)); stroke-width:2;
+    stroke-dasharray:700; stroke-dashoffset:700;
+    rx:16;
+    transition:stroke-dashoffset 1s ease;
+  }
+  .card:hover svg.trace rect{ stroke-dashoffset:0; }
+  .card h3{ font-family:'Cairo'; font-weight:800; font-size:1.15rem; margin-bottom:8px; color:var(--ink); }
+  .card p{ color:var(--ink-soft); font-size:.92rem; line-height:1.8; }
+  .card .swatch{
+    position:absolute; bottom:0; right:0; left:0; height:4px; background:var(--accent, var(--gold));
+  }
+
+  /* ---------- why us ---------- */
+  .why-us{ padding:100px 0; background:#fff; }
+  .features-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:20px; }
+  .feature-box{
+    background:var(--paper); padding:30px 24px; border-radius:16px; text-align:center;
+    border:1px solid #E7E5DC; transition:transform .3s ease, border-color .3s ease;
+  }
+  .feature-box:hover{ transform:translateY(-5px); border-color:var(--sky); }
+  .feature-icon{ font-size:2.5rem; margin-bottom:14px; display:block; }
+  .feature-box h3{ font-family:'Cairo'; font-weight:700; font-size:1.2rem; margin-bottom:8px; color:var(--ink); }
+  .feature-box p{ color:var(--ink-soft); font-size:.9rem; line-height:1.7; }
+
+  /* ---------- testimonials ---------- */
+  .testimonials{ padding:100px 0; background:var(--paper); }
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .testi-card{
+    background:#fff; border-radius:16px; padding:30px; border:1px solid #E7E5DC;
+    box-shadow:0 6px 20px rgba(0,0,0,.03); position:relative;
+  }
+  .stars{ color:var(--gold); font-size:1.1rem; margin-bottom:12px; }
+  .testi-card p{ color:var(--ink); font-size:.95rem; line-height:1.8; margin-bottom:18px; font-style:italic; }
+  .client-info b{ display:block; font-family:'Cairo'; font-weight:700; color:var(--navy-deep); font-size:1rem; }
+  .client-info span{ color:var(--ink-soft); font-size:.82rem; font-family:'IBM Plex Sans Arabic'; }
+
+  /* ---------- materials strip / about ---------- */
+  .about{ background:var(--navy-deep); padding:110px 0; color:#fff; overflow:hidden; }
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+  .about h2{ color:#fff; font-size:clamp(1.9rem,3.4vw,2.5rem); margin-bottom:18px; }
+  .about p{ color:#C7CEE8; line-height:2; font-size:1.02rem; margin-bottom:14px; }
+  .material-tape{
+    display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;
+  }
+  .material-chip{
+    font-family:'IBM Plex Sans Arabic'; font-size:.85rem; font-weight:500;
+    padding:8px 16px; border-radius:30px; border:1px solid var(--line); color:#EAEEFA;
+  }
+  .about-visual{
+    position:relative; aspect-ratio:1/1; border-radius:24px;
+    background:linear-gradient(145deg, rgba(242,185,10,.12), rgba(41,171,226,.1));
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .about-visual img.logo-img{ width:65%; border-radius:20px; box-shadow:0 8px 25px rgba(0,0,0,0.3); }
+  .ring{
+    position:absolute; border:1.5px dashed rgba(255,255,255,.22); border-radius:50%;
+    animation:spin 30s linear infinite;
+  }
+  .ring.r1{ inset:8%; }
+  .ring.r2{ inset:20%; animation-direction:reverse; animation-duration:22s; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  /* ---------- process ---------- */
+  .process{ padding:110px 0; background:#fff; }
+  .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:20px; }
+  .step{ text-align:center; padding:0 10px; }
+  .step-num{
+    font-family:'Lalezar'; font-size:2.6rem; color:transparent;
+    -webkit-text-stroke:1.5px var(--sky); display:block; margin-bottom:10px;
+  }
+  .step h4{ font-family:'Cairo'; font-weight:700; margin-bottom:8px; }
+  .step p{ color:var(--ink-soft); font-size:.9rem; line-height:1.8; }
+
+  /* ---------- disqus comments section ---------- */
+  .comments-sec{ padding:90px 0; background:#fff; border-top:1px solid #E7E5DC; }
+  .comments-sec .wrap{ max-width:900px; }
+
+  /* ---------- contact ---------- */
+  .contact{ padding:110px 0; background:var(--paper); position:relative; }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1.1fr; gap:40px; }
+  .info-card{
+    background:var(--navy-deep); color:#fff; border-radius:20px; padding:40px 32px;
+    position:relative; overflow:hidden;
+  }
+  .info-card h3{ font-family:'Lalezar'; font-size:1.7rem; margin-bottom:20px; color:var(--gold); }
+  .info-row{ display:flex; align-items:flex-start; gap:14px; margin-bottom:22px; }
+  .info-row .ic{
+    width:40px; height:40px; border-radius:10px; background:rgba(255,255,255,.08);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem;
+  }
+  .info-row div p{ color:#C7CEE8; font-size:.92rem; line-height:1.7; }
+  .info-row div b{ display:block; font-family:'Cairo'; font-weight:700; margin-bottom:2px; }
+  .map-link{ color:var(--sky); text-decoration:underline; font-weight:600; transition:color .2s ease; }
+  .map-link:hover{ color:var(--gold); }
+
+  form{ background:#fff; border:1px solid #E7E5DC; border-radius:20px; padding:40px; }
+  .field{ margin-bottom:20px; }
+  .field label{ display:block; font-family:'IBM Plex Sans Arabic'; font-size:.88rem; font-weight:600; margin-bottom:8px; color:var(--ink); }
+  .field input, .field select, .field textarea{
+    width:100%; padding:13px 16px; border-radius:10px; border:1.5px solid #E1DFD5;
+    font-family:'Cairo'; font-size:.95rem; background:#FBFAF7; color:var(--ink);
+    transition:border-color .2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color:var(--sky);
+  }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  textarea{ resize:vertical; min-height:110px; }
+  
+  .btn-group { display: flex; gap: 12px; flex-direction: column; }
+  .submit-btn{
+    width:100%; background:#25D366; color:#fff; border:none; padding:16px;
+    border-radius:10px; font-family:'Cairo'; font-weight:700; font-size:1rem; cursor:pointer;
+    transition:background .25s ease; display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .submit-btn:hover{ background:#1EBE57; }
+  .email-btn{
+    width:100%; background:var(--navy-deep); color:#fff; border:none; padding:14px;
+    border-radius:10px; font-family:'Cairo'; font-weight:700; font-size:.95rem; cursor:pointer;
+    transition:background .25s ease; text-align:center; display:block;
+  }
+  .email-btn:hover{ background:#182968; }
+
+  /* ---------- scroll to top button ---------- */
+  .scroll-top-btn {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 48px;
+    height: 48px;
+    background: var(--navy-deep);
+    color: #fff;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease, transform .3s ease, background .3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  }
+  .scroll-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  .scroll-top-btn:hover {
+    background: var(--gold);
+    color: var(--navy-dark);
+    transform: translateY(-4px);
+  }
+
+  /* ---------- footer ---------- */
+  footer{ background:var(--navy-dark); color:#9AA3C4; padding:40px 0; text-align:center; font-family:'IBM Plex Sans Arabic'; font-size:.85rem; }
+  footer .fb{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px; }
+  footer .fb img.logo-img{ height:32px; width:32px; object-fit:contain; border-radius:6px; }
+  footer .fb span{ color:#fff; font-family:'Lalezar'; font-size:1.1rem; }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+
+  @media (max-width: 980px){
+    .grid{ grid-template-columns:repeat(2,1fr); }
+    .features-grid{ grid-template-columns:repeat(2,1fr); }
+    .testi-grid{ grid-template-columns:1fr; }
+    .about-grid{ grid-template-columns:1fr; }
+    .about-visual{ order:-1; max-width:320px; margin:0 auto; }
+    .steps{ grid-template-columns:repeat(2,1fr); }
+    .contact-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 620px){
+    .nav-links{
+      position:absolute; top:100%; right:0; left:0; background:var(--navy-deep);
+      flex-direction:column; padding:22px 28px; gap:18px; border-bottom:1px solid var(--line);
+      transform:translateY(-130%); transition:transform .3s ease; z-index:99;
+    }
+    .nav-links.open{ transform:translateY(0); }
+    .nav-cta{ display:none; }
+    .burger{ display:block; }
+    .grid, .features-grid{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr; }
+    .field-row{ grid-template-columns:1fr; }
+    .scroll-top-btn { bottom: 20px; left: 20px; width: 42px; height: 42px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-banner">
+  <img class="logo-img" alt="شعار حقيبة الطالب للدعاية والإعلان">
+  <span>حقيبة الطالب</span>
+  <small>للدعاية والإعلان</small>
+</div>
+
+<header>
+  <div class="nav">
+    <div class="nav-brand">
+      <img class="logo-img" alt="شعار حقيبة الطالب">
+      <span>حقيبة الطالب</span>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">الرئيسية</a>
+      <a href="#services">خدماتنا</a>
+      <a href="#why-us">لماذا نحن؟</a>
+      <a href="#about">من نحن</a>
+      <a href="#process">آلية العمل</a>
+      <a href="#comments">التعليقات</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+    <a href="https://wa.me/966591266141" target="_blank" class="btn nav-cta">اطلب الآن</a>
+    <button class="burger" id="burger">☰</button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="hero">
+  <div class="circuit-bg">
+    <div class="glow" style="width:340px;height:340px;background:var(--sky);top:-60px;right:-60px;"></div>
+    <div class="glow" style="width:300px;height:300px;background:var(--gold);bottom:-40px;left:-40px;"></div>
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+      <g stroke="#3F4E96" stroke-width="1">
+        <line x1="0" y1="120" x2="220" y2="120"/><line x1="220" y1="120" x2="300" y2="60"/>
+        <line x1="960" y1="80" x2="1200" y2="80"/><line x1="960" y1="80" x2="900" y2="180"/>
+        <line x1="40" y1="600" x2="240" y2="700"/><line x1="1000" y1="650" x2="1180" y2="600"/>
+        <line x1="500" y1="30" x2="620" y2="90"/>
+      </g>
+      <g fill="#5B8CFF">
+        <circle cx="220" cy="120" r="3.5"/><circle cx="300" cy="60" r="3"/>
+        <circle cx="960" cy="80" r="3.5"/><circle cx="900" cy="180" r="3"/>
+        <circle cx="240" cy="700" r="3"/><circle cx="1180" cy="600" r="3.5"/>
+        <circle cx="620" cy="90" r="3"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wrap hero-inner">
+    <img class="logo-img hero-logo" alt="شعار حقيبة الطالب">
+    <p class="eyebrow">مكتب خدمات · قرطاسية · تصميم وطباعة</p>
+    <h1>حقيبة الطالب <span>للدعاية والإعلان</span></h1>
+    <svg class="laser-underline" viewBox="0 0 560 34">
+      <path d="M6 20 C 120 4, 220 30, 340 14 S 500 6, 554 18"/>
+    </svg>
+    <p>من فكرتك إلى قطعة بين يديك: كريلك، فلين، دروع، أختام، تطريز، وقصّ ليزر بدقّة عالية — كل ما يحتاجه الطالب والمناسبة والمشروع، تحت سقف واحد.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/966591266141" target="_blank" class="btn btn-primary">📞 تواصل معنا الآن</a>
+      <a href="#services" class="btn btn-outline">استعرض الخدمات</a>
+    </div>
+    <div class="strip">
+      <div class="strip-item"><b>7+</b>خدمات متخصصة</div>
+      <div class="strip-item"><b>دقّة</b>تصميم وتنفيذ</div>
+      <div class="strip-item"><b>سرعة</b>تسليم في الوقت</div>
+      <div class="strip-item"><b>خامات</b>عالية الجودة</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="services">
+  <div class="wrap">
+    <p class="kicker">خدماتنا</p>
+    <h2 class="sec-title reveal">كل ما تحتاجه، نصنعه بدقّة</h2>
+    <p class="sec-sub reveal">من القطعة الواحدة إلى الطلبات الكبيرة، نجمع بين الخامة الصحيحة والتنفيذ الدقيق في كل عمل يخرج من المكتب.</p>
+
+    <div class="grid">
+
+      <!-- خدمة 1 -->
+      <div class="card reveal" style="--accent:var(--sky)">
+        <svg class="trace" viewBox="0 0 300 220" preserveAspectRatio="none"><rect x="1" y="1" width="298" height="218"/></svg>
+        <div class="card-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1_YIDAizjYbvDGqhLdL-yY0skS0aS7Pt6" alt="أعمال الكريلك">
+        </div>
+        <div class="card-body">
+          <h3>أعمال الكريلك (الأكريليك)</h3>
+          <p>تصميم وتفصيل قطع الأكريليك بجميع الألوان والسماكات — لوحات، مجسمات، حوامل عرض، ولوحات مكتبية.</p>
+        </div>
+        <div class="swatch"></div>
+      </div>
+
+      <!-- خدمة 2 -->
+      <div class="card reveal" style="--accent:var(--orange)">
+        <svg class="trace" viewBox="0 0 300 220" preserveAspectRatio="none"><rect x="1" y="1" width="298" height="218"/></svg>
+        <div class="card-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1jQqrxix4amByXZ1fzeh-blpsgVzxPrYg" alt="أعمال الفلين">
+        </div>
+        <div class="card-body">
+          <h3>أعمال الفلين</h3>
+          <p>تنفيذ مجسمات ولوحات الفلين للمشاريع المدرسية والفعاليات بأدق التفاصيل وأنسب المقاسات.</p>
+        </div>
+        <div class="swatch"></div>
+      </div>
+
+      <!-- خدمة 3 -->
+      <div class="card reveal" style="--accent:var(--gold)">
+        <svg class="trace" viewBox="0 0 300 220" preserveAspectRatio="none"><rect x="1" y="1" width="298" height="218"/></svg>
+        <div class="card-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1AJYZlcGFy5OQi4S_SZjWICnPqDh-7awn" alt="الدروع والتكريم">
+        </div>
+        <div class="card-body">
+          <h3>الدروع والتكريم</h3>
+          <p>تصميم وتصنيع الدروع بجميع أشكالها وخاماتها لتكريم المتميزين في المناسبات والفعاليات.</p>
+        </div>
+        <div class="swatch"></div>
+      </div>
+
+      <!-- خدمة 4 -->
+      <div class="card reveal" style="--accent:var(--sky)">
+        <svg class="trace" viewBox="0 0 300 220" preserveAspectRatio="none"><rect x="1" y="1" width="298" height="218"/></svg>
+        <div class="card-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1Dds99HlDdI8CRC-DOsSWfL5E-PMkk59O" alt="طباعة وخياطة البنرات والتيشرتات">
+        </div>
+        <div class="card-body">
+          <h3>طباعة وخياطة البنرات والتيشرتات</h3>
+          <p>طباعة وتطريز الشعارات والتصاميم على البنرات القماشية، التيشرتات والزي الموحد بجودة عالية.</p>
+        </div>
+        <div class="swatch"></div>
+      </div>
+
+      <!-- خدمة 5 -->
+      <div class="card reveal" style="--accent:var(--orange)">
+        <svg class="trace" viewBox="0 0 300 220" preserveAspectRatio="none"><rect x="1" y="1" width="298" height="218"/></svg>
+        <div class="card-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1nF9wuGZXl27kUJnXB78ElWeRdhFu5j2t" alt="صناعة الأختام">
+        </div>
+        <div class="card-body">
+          <h3>صناعة الأختام</h3>
+          <p>تصنيع الأختام الرسمية والشخصية بمختلف الأحجام والخامات بتصميم واضح ودقيق.</p>
+        </div>
+        <div class="swatch"></div>
+      </div>
+
+      <!-- خدمة 6 -->
+      <div class="card reveal" style="--accent:var(--gold)">
+        <svg class="trace" viewBox="0 0 300 220" preserveAspectRatio="none"><rect x="1" y="1" width="298" height="218"/></svg>
+        <div class="card-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/18e7RQb8xj-T5XBB2RkCjko6turFroW8f" alt="القص بالليزر">
+        </div>
+        <div class="card-body">
+          <h3>القصّ والحفر بالليزر</h3>
+          <p>قص وحفر دقيق بالليزر على الخشب والأكريليك والمعدن، لتحويل أي تصميم إلى قطعة حقيقية.</p>
+        </div>
+        <div class="swatch"></div>
+      </div>
+
+      <!-- خدمة 7 -->
+      <div class="card reveal" style="--accent:var(--sky)">
+        <svg class="trace" viewBox="0 0 300 220" preserveAspectRatio="none"><rect x="1" y="1" width="298" height="218"/></svg>
+        <div class="card-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1BbNa6CHcDJGoTPASr8w7Fj1cy43h-urk" alt="الطباعة والدعاية والإعلان">
+        </div>
+        <div class="card-body">
+          <h3>الطباعة والدعاية والإعلان</h3>
+          <p>طباعة اللافتات والبانرات والبروشورات وكل ما يخص هوية المشروع الإعلانية، من التصميم حتى التسليم.</p>
+        </div>
+        <div class="swatch"></div>
+      </div>
+
+      <!-- خدمة 8 -->
+      <div class="card reveal" style="--accent:var(--orange)">
+        <svg class="trace" viewBox="0 0 300 220" preserveAspectRatio="none"><rect x="1" y="1" width="298" height="218"/></svg>
+        <div class="card-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1wfeVqzHKy82jAy1mj6DoqlsSfqGFY0x2" alt="القرطاسية">
+        </div>
+        <div class="card-body">
+          <h3>القرطاسية ومستلزمات الطالب</h3>
+          <p>تشكيلة متكاملة من الأدوات المكتبية والقرطاسية ومستلزمات المشاريع الطلابية.</p>
+        </div>
+        <div class="swatch"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY US ============ -->
+<section id="why-us" class="why-us">
+  <div class="wrap">
+    <p class="kicker">مميزاتنا</p>
+    <h2 class="sec-title reveal">لماذا تختار "حقيبة الطالب"؟</h2>
+    <p class="sec-sub reveal">نلتزم بالاحترافية في التنفيذ والدقة في المواعيد لتقديم أفضل نتيجة لمشروعك.</p>
+    <div class="features-grid">
+      <div class="feature-box reveal">
+        <span class="feature-icon">🎯</span>
+        <h3>دقة فائقة</h3>
+        <p>نستخدم أحدث تقنيات قص الليزر والطباعة لضمان خروج التصميم بأعلى دقة.</p>
+      </div>
+      <div class="feature-box reveal">
+        <span class="feature-icon">⚡</span>
+        <h3>سرعة في الإنجاز</h3>
+        <p>ندرك أهمية الوقت للطلاب والمشاريع، ونضمن التسليم في الموعد المترتب عليه.</p>
+      </div>
+      <div class="feature-box reveal">
+        <span class="feature-icon">💎</span>
+        <h3>خامات ممتازة</h3>
+        <p>نختار أفضل خامات الأكريليك، الفلين، والأقمشة لتدوم أطول وتظهر بشكل فخم.</p>
+      </div>
+      <div class="feature-box reveal">
+        <span class="feature-icon">🤝</span>
+        <h3>أسعار تنافسية</h3>
+        <p>نقدم أفضل جودة مع مراعاة ميزانية الطلاب والمؤسسات بأسعار مناسبة لجميع الخدمات.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials">
+  <div class="wrap">
+    <p class="kicker">آراء العملاء</p>
+    <h2 class="sec-title reveal">ماذا يقول عملاؤنا عنا؟</h2>
+    <p class="sec-sub reveal">نفخر بثقة عملاؤنا من طلاب، معلمين، وأصحاب مشاريع في الطائف.</p>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"تعامل راقي جداً ودقة في قص الأكريليك والمجسمات المدرسية. طلبنا منهم دروع ومجسم فلين وكان التنفيذ فوق المتوقع والتسليم بنفس الوقت."</p>
+        <div class="client-info">
+          <b>أحمد الثبيتي</b>
+          <span>عميل - الطائف</span>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"أفضل مكان للطباعة والأختام في الحوية. سرعة في الرد والتجاوب على الواتساب والتصميم يجهزونه لك قبل التنفيذ للتأكد."</p>
+        <div class="client-info">
+          <b>سارة العتيبي</b>
+          <span>مشروع خاص</span>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"خدمة ممتازة، طبعنا عندهم بنرات وتيشرتات للمدرسة وكانت الجودة عالية جداً وألوانها واضحة. شكراً لكم!"</p>
+        <div class="client-info">
+          <b>محمد الزهراني</b>
+          <span>معلم مدرسة</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="about">
+  <div class="circuit-bg" style="position:absolute;"></div>
+  <div class="wrap about-grid" style="position:relative;z-index:2;">
+    <div class="reveal">
+      <p class="kicker" style="justify-content:flex-start">من نحن</p>
+      <h2>مكتب واحد، لكل ما يحتاجه مشروعك</h2>
+      <p>حقيبة الطالب مكتب خدمات وقرطاسية وتصميم، جمعنا فيه بين الخبرة اليدوية في الكريلك والفلين والدروع، وبين دقّة القصّ بالليزر والطباعة الرقمية الحديثة.</p>
+      <p>هدفنا أن يجد الطالب وصاحب المشروع وكل من يبحث عن عمل احترافي، خدمته كاملة في مكان واحد — من الفكرة الأولى حتى القطعة النهائية.</p>
+      <div class="material-tape">
+        <span class="material-chip">أكريليك</span>
+        <span class="material-chip">فلين</span>
+        <span class="material-chip">خشب وليزر</span>
+        <span class="material-chip">أقمشة وتطريز</span>
+        <span class="material-chip">أختام</span>
+        <span class="material-chip">مطبوعات دعائية</span>
+      </div>
+    </div>
+    <div class="about-visual reveal">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <img class="logo-img" alt="شعار حقيبة الطالب">
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process" class="process">
+  <div class="wrap">
+    <p class="kicker">آلية العمل</p>
+    <h2 class="sec-title reveal">من فكرتك إلى تسليمك في 4 خطوات</h2>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">1</span>
+        <h4>تواصل معنا</h4>
+        <p>أرسل تفاصيل طلبك عبر واتساب أو النموذج أدناه.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">2</span>
+        <h4>تصميم ومراجعة</h4>
+        <p>نجهّز التصميم أو المخطط ونعرضه عليك للاعتماد.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">3</span>
+        <h4>التنفيذ</h4>
+        <p>ننفّذ الطلب بالخامة المناسبة وبدقة في كل تفصيل.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">4</span>
+        <h4>الاستلام</h4>
+        <p>تستلم عملك جاهزًا في الموعد المتفق عليه.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMENTS (DISQUS) ============ -->
+<section id="comments" class="comments-sec">
+  <div class="wrap">
+    <p class="kicker">مجتمعنا</p>
+    <h2 class="sec-title reveal">شاركنا رأيك واستفساراتك</h2>
+    <p class="sec-sub reveal">اترك تعليقك أو استفسارك وسنقوم بالرد عليك في أقرب وقت.</p>
+    
+    <!-- Disqus Universal Code -->
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = window.location.href;
+            this.page.identifier = window.location.pathname;
+        };
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://soliman-2.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="kicker">تواصل معنا</p>
+    <h2 class="sec-title reveal">أخبرنا عن طلبك</h2>
+    <p class="sec-sub reveal">راسلنا عبر النموذج أو تواصل معنا مباشرة، وسنرد عليك في أقرب وقت.</p>
+
+    <div class="contact-grid">
+
+      <div class="info-card reveal">
+        <h3>بيانات التواصل</h3>
+        <div class="info-row">
+          <div class="ic">📱</div>
+          <div><b>واتساب / جوال</b><p class="mono"><a href="tel:0591266141" style="color:inherit;">0591266141</a></p></div>
+        </div>
+        <div class="info-row">
+          <div class="ic">📍</div>
+          <div>
+            <b>الموقع</b>
+            <p>
+              <a href="https://maps.app.goo.gl/3k2cgkrDHAfXrphP9" target="_blank" class="map-link">
+                الطائف - الحويه جوار مركز شرطه الحويه 📍 (افتح الموقع على الخريطة)
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="ic">🕒</div>
+          <div><b>أوقات العمل</b><p>يوميًا · صباحًا ومساءً</p></div>
+        </div>
+        <div class="info-row">
+          <div class="ic">✉️</div>
+          <div><b>البريد الإلكتروني</b><p class="mono"><a href="mailto:dahansoliman3@gmail.com" style="color:inherit;">dahansoliman3@gmail.com</a></p></div>
+        </div>
+      </div>
+
+      <form class="reveal" id="orderForm">
+        <div class="field-row">
+          <div class="field">
+            <label>الاسم</label>
+            <input type="text" id="custName" placeholder="اكتب اسمك" required>
+          </div>
+          <div class="field">
+            <label>رقم الجوال</label>
+            <input type="tel" id="custPhone" placeholder="05XXXXXXXX" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>نوع الخدمة</label>
+          <select id="custService">
+            <option>أعمال الكريلك</option>
+            <option>أعمال الفلين</option>
+            <option>الدروع والتكريم</option>
+            <option>طباعة وخياطة البنرات والتيشرتات</option>
+            <option>صناعة الأختام</option>
+            <option>القصّ والحفر بالليزر</option>
+            <option>الطباعة والدعاية والإعلان</option>
+            <option>القرطاسية</option>
+            <option>أخرى</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>تفاصيل الطلب</label>
+          <textarea id="custDetails" placeholder="اكتب لنا تفاصيل ما تحتاجه..."></textarea>
+        </div>
+
+        <div class="btn-group">
+          <button type="submit" class="submit-btn">📲 إرسال عبر الواتساب مباشرة</button>
+          <button type="button" id="emailBtn" class="email-btn">✉️ إرسال عبر البريد الإلكتروني</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- زر العودة للأعلى -->
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="العودة للأعلى">▲</button>
+
+<footer>
+  <div class="fb">
+    <img class="logo-img" alt="شعار حقيبة الطالب">
+    <span>حقيبة الطالب</span>
+  </div>
+  <p>مكتب خدمات وقرطاسية وتصميم — جميع الحقوق محفوظة © 2026</p>
+</footer>
+
+<script>
+  const driveLogoUrl = "https://lh3.googleusercontent.com/d/1Bj_p3rt68V1j0BpXPXpao35rJ5bh56B-";
+
+  document.querySelectorAll('.logo-img').forEach(img => {
+    img.src = driveLogoUrl;
+  });
+
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Scroll to Top
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollTopBtn.classList.add('show');
+    } else {
+      scrollTopBtn.classList.remove('show');
+    }
+  });
+
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  const targetPhone = "966591266141";
+  const targetEmail = "dahansoliman3@gmail.com";
+
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('custName').value;
+    const phone = document.getElementById('custPhone').value;
+    const service = document.getElementById('custService').value;
+    const details = document.getElementById('custDetails').value;
+
+    const message = `السلام عليكم، لدي طلب جديد من موقع حقيبة الطالب:%0A%0A` +
+                    `👤 *الاسم:* ${encodeURIComponent(name)}%0A` +
+                    `📱 *الجوال:* ${encodeURIComponent(phone)}%0A` +
+                    `🛠️ *نوع الخدمة:* ${encodeURIComponent(service)}%0A` +
+                    `📝 *التفاصيل:* ${encodeURIComponent(details)}`;
+
+    window.open(`https://wa.me/${targetPhone}?text=${message}`, '_blank');
+  });
+
+  document.getElementById('emailBtn').addEventListener('click', function() {
+    const name = document.getElementById('custName').value;
+    const phone = document.getElementById('custPhone').value;
+    const service = document.getElementById('custService').value;
+    const details = document.getElementById('custDetails').value;
+
+    if(!name || !phone) {
+      alert('الرجاء تعبئة الاسم ورقم الجوال أولاً');
+      return;
+    }
+
+    const subject = encodeURIComponent(`طلب جديد من: ${name}`);
+    const body = encodeURIComponent(`طلب جديد من الموقع:\n\nالاسم: ${name}\nالجوال: ${phone}\nالخدمة: ${service}\nالتفاصيل:\n${details}`);
+
+    window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+  });
+</script>
+
+<!-- Disqus Count Script -->
+<script id="dsq-count-scr" src="//soliman-2.disqus.com/count.js" async></script>
+
+</body>
+</html>
